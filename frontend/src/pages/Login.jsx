@@ -36,8 +36,10 @@ const Login = () => {
   // If already logged in, redirect
   useEffect(() => {
     if (user) {
-      const from = location.state?.from?.pathname || '/';
-      navigate(from, { replace: true });
+      const defaultPath = user.type === 'user' ? '/watch' : '/';
+      const from = location.state?.from?.pathname || defaultPath;
+      const targetPath = (user.type === 'user' && from !== '/watch') ? '/watch' : from;
+      navigate(targetPath, { replace: true });
     }
   }, [user, navigate, location]);
 
@@ -99,8 +101,10 @@ const Login = () => {
         if (result.success) {
           setSuccess('Login successful! Redirecting...');
           setTimeout(() => {
-            const from = location.state?.from?.pathname || '/';
-            navigate(from, { replace: true });
+            const defaultPath = result.type === 'user' ? '/watch' : '/';
+            const from = location.state?.from?.pathname || defaultPath;
+            const targetPath = (result.type === 'user' && from !== '/watch') ? '/watch' : from;
+            navigate(targetPath, { replace: true });
           }, 1000);
         } else {
           setError(result.message || 'Invalid credentials.');

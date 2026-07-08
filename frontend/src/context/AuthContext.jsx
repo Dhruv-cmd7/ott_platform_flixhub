@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem('token', accessToken);
           localStorage.setItem('user', JSON.stringify(adminUser));
           setUser(adminUser);
-          return { success: true };
+          return { success: true, type: 'admin' };
         }
       } catch (adminErr) {
         // If admin login fails (for any reason), attempt normal user login
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('token', accessToken);
             localStorage.setItem('user', JSON.stringify(clientUser));
             setUser(clientUser);
-            return { success: true };
+            return { success: true, type: 'user' };
           }
         } catch (userErr) {
           // Both failed, return detailed connection error or standard message
