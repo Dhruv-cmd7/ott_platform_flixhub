@@ -151,3 +151,8 @@
 {"level":"info","message":"Connected to MongoDB database successfully.","timestamp":"2026-07-08 12:47:10"}
 {"level":"info","message":"Server is running in development mode on port 5000","timestamp":"2026-07-08 12:47:10"}
 {"level":"info","message":"API Documentation available at http://localhost:5000/api-docs","timestamp":"2026-07-08 12:47:10"}
+{"level":"info","message":"Cloudinary initialized successfully.","timestamp":"2026-07-08 12:52:29"}
+{"level":"info","message":"Razorpay initialized successfully.","timestamp":"2026-07-08 12:52:29"}
+{"level":"info","message":"Connected to MongoDB database successfully.","timestamp":"2026-07-08 12:52:30"}
+{"level":"info","message":"Server is running in development mode on port 5000","timestamp":"2026-07-08 12:52:30"}
+{"level":"info","message":"API Documentation available at http://localhost:5000/api-docs","timestamp":"2026-07-08 12:52:30"}

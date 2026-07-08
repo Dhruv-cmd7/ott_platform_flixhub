@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
     initializeAuth();
   }, []);
 
-  // Standard Email & Password Login
   const login = async (email, password) => {
     try {
       setLoading(true);
@@ -53,8 +52,8 @@ export const AuthProvider = ({ children }) => {
           return { success: true };
         }
       } catch (adminErr) {
-        // If it's a 401/400 (auth error), try normal user login
-        if (adminErr.response && (adminErr.response.status === 401 || adminErr.response.status === 400)) {
+        // If admin login fails (for any reason), attempt normal user login
+        try {
           const res = await api.post('/api/auth/login', { email, password });
           if (res.data && res.data.success) {
             const { user: normalUser, accessToken } = res.data.data;
@@ -64,8 +63,10 @@ export const AuthProvider = ({ children }) => {
             setUser(clientUser);
             return { success: true };
           }
-        } else {
-          throw adminErr;
+        } catch (userErr) {
+          // Both failed, return detailed connection error or standard message
+          const errorMsg = userErr.response?.data?.message || adminErr.response?.data?.message || userErr.message || 'Invalid email or password';
+          return { success: false, message: errorMsg };
         }
       }
       return { success: false, message: 'Invalid email or password' };
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Login error:', err);
       return { 
         success: false, 
-        message: err.response?.data?.message || 'Invalid email or password.' 
+        message: err.response?.data?.message || err.message || 'Invalid email or password.' 
       };
     } finally {
       setLoading(false);
