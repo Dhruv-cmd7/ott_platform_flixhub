@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #0f0f12; /* Dark, depth-focused background */
+    color: #f3f4f6;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f12;
+}
+::-webkit-scrollbar-thumb {
+  background: #272732;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914; /* Premium OTT Accent Red */
+}
+
+/* Glassmorphism Styles (Optimized for rendering performance) */
+.glass-panel {
+  background: rgba(18, 18, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(22, 22, 32, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Accent border gradient animations */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(229, 9, 20, 0.3);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.05);
+  }
+  50% {
+    border-color: rgba(229, 9, 20, 0.8);
+    box-shadow: 0 0 25px rgba(229, 9, 20, 0.2);
+  }
+}
+
+.glow-border {
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  animation: borderGlow 4s infinite ease-in-out;
+}

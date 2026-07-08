@@ -1,0 +1,240 @@
+{
+  "info": {
+    "name": "OTT Platform Backend API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "API collection for testing and integrating with the MERN OTT Platform Backend."
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"userpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"userpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json" 
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@ott.com\",\n  \"password\": \"adminpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/admin/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "admin", "login"]
+            }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/forgot-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "forgot-password"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "Get All Movies",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/movies?page=1&limit=10&isPublished=true",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movies"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "isPublished", "value": "true" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Movie By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/movies/{{movie_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movies", "{{movie_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"{{plan_id}}\",\n  \"couponCode\": \"WELCOME50\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/create-order",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "create-order"]
+            }
+          }
+        },
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"razorpayOrderId\": \"{{order_id}}\",\n  \"razorpayPaymentId\": \"pay_mock_12345\",\n  \"razorpaySignature\": \"sig_mock_12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "verify"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/stats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "dashboard", "stats"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "user_token",
+      "value": "your_access_token_here",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "your_admin_access_token_here",
+      "type": "string"
+    },
+    {
+      "key": "movie_id",
+      "value": "your_movie_id_here",
+      "type": "string"
+    },
+    {
+      "key": "plan_id",
+      "value": "your_plan_id_here",
+      "type": "string"
+    },
+    {
+      "key": "order_id",
+      "value": "your_order_id_here",
+      "type": "string"
+    }
+  ]
+}
