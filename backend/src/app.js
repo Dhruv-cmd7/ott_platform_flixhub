@@ -73,7 +73,11 @@ app.use(async (req, res, next) => {
 app.use('/api', apiLimiter);
 
 // Serve static upload files
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const os = require('os');
+const staticUploadsDir = process.env.VERCEL 
+  ? os.tmpdir() 
+  : path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(staticUploadsDir));
 
 // Swagger UI Documentation Route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
