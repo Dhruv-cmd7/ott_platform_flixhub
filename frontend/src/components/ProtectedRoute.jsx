@@ -28,13 +28,13 @@ const ProtectedRoute = ({ children }) => {
   }
 
   // Redirect standard user to /watch if they try to access admin pages
-  if (user.type === 'user' && location.pathname !== '/watch' && location.pathname !== '/restricted') {
+  if (user.type === 'user' && location.pathname.startsWith('/admin')) {
     return <Navigate to="/watch" replace />;
   }
 
   // Redirect admins away from /watch and /restricted back to main dashboard
   if (user.type === 'admin' && (location.pathname === '/watch' || location.pathname === '/restricted')) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/admin" replace />;
   }
 
   return children;

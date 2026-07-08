@@ -173,7 +173,7 @@ const Navbar = ({ toggleSidebar }) => {
                 </div>
 
                 <Link
-                  to="/profile"
+                  to="/admin/profile"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
                   onClick={() => setDropdownOpen(false)}
                 >
@@ -182,7 +182,7 @@ const Navbar = ({ toggleSidebar }) => {
                 </Link>
 
                 <Link
-                  to="/settings"
+                  to="/admin/settings"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
                   onClick={() => setDropdownOpen(false)}
                 >

@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminLayout from './layouts/AdminLayout';
 
 // Import Pages
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Content from './pages/Content';
@@ -22,6 +23,9 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
+          {/* Public Landing Page */}
+          <Route path="/" element={<Home />} />
+
           {/* Public Authentication Route */}
           <Route path="/login" element={<Login />} />
 
@@ -47,7 +51,7 @@ function App() {
 
           {/* Protected Administrative Routes */}
           <Route
-            path="/"
+            path="/admin"
             element={
               <ProtectedRoute>
                 <AdminLayout />

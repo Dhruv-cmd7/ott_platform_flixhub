@@ -19,12 +19,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-    { name: 'Movies & Series', href: '/content', icon: Film },
-    { name: 'Categories & Genres', href: '/categories', icon: Compass },
-    { name: 'Subscribers', href: '/subscribers', icon: Users },
-    { name: 'Admin Profile', href: '/profile', icon: User },
-    { name: 'Settings', href: '/settings', icon: Settings },
+    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+    { name: 'Movies & Series', href: '/admin/content', icon: Film },
+    { name: 'Categories & Genres', href: '/admin/categories', icon: Compass },
+    { name: 'Subscribers', href: '/admin/subscribers', icon: Users },
+    { name: 'Admin Profile', href: '/admin/profile', icon: User },
+    { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
   return (

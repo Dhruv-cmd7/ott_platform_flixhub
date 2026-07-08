@@ -110,7 +110,7 @@ const Dashboard = () => {
             Refresh
           </button>
           <button
-            onClick={() => navigate('/content')}
+            onClick={() => navigate('/admin/content')}
             className="flex items-center gap-2 bg-[#e50914] hover:bg-[#ff1e27] text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow-lg hover:shadow-red-600/20 active:scale-[0.98] transition-all"
           >
             <PlusCircle size={16} />
@@ -138,7 +138,7 @@ const Dashboard = () => {
         <div className="lg:col-span-7 glass-card p-6 rounded-xl border border-white/5 space-y-5">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-bold text-white">Recent Content</h2>
-            <button onClick={() => navigate('/content')} className="text-xs font-semibold text-[#e50914] hover:text-[#ff1e27] transition-colors">
+            <button onClick={() => navigate('/admin/content')} className="text-xs font-semibold text-[#e50914] hover:text-[#ff1e27] transition-colors">
               View All Catalog →
             </button>
           </div>
@@ -200,7 +200,7 @@ const Dashboard = () => {
         <div className="lg:col-span-5 glass-card p-6 rounded-xl border border-white/5 space-y-5">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-bold text-white">Recent Users</h2>
-            <button onClick={() => navigate('/subscribers')} className="text-xs font-semibold text-[#e50914] hover:text-[#ff1e27] transition-colors">
+            <button onClick={() => navigate('/admin/subscribers')} className="text-xs font-semibold text-[#e50914] hover:text-[#ff1e27] transition-colors">
               Manage Users →
             </button>
           </div>
