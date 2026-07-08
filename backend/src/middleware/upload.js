@@ -1,11 +1,15 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const cloudinary = require('cloudinary').v2;
 const logger = require('../utils/logger');
 
-// Ensure local uploads directory exists
-const uploadsDir = path.join(__dirname, '../uploads');
+// Ensure local uploads directory exists (use OS temp dir on Vercel/production lambdas)
+const uploadsDir = process.env.VERCEL 
+  ? os.tmpdir() 
+  : path.join(__dirname, '../uploads');
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }

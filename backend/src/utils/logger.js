@@ -8,24 +8,31 @@ const logFormat = winston.format.combine(
   winston.format.json()
 );
 
-const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
-  format: logFormat,
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      ),
-    }),
+const transports = [
+  new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.simple()
+    ),
+  }),
+];
+
+if (!process.env.VERCEL) {
+  transports.push(
     new winston.transports.File({ 
       filename: path.join(__dirname, '../../logs/error.log'), 
       level: 'error' 
     }),
     new winston.transports.File({ 
       filename: path.join(__dirname, '../../logs/combined.log') 
-    }),
-  ],
+    })
+  );
+}
+
+const logger = winston.createLogger({
+  level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+  format: logFormat,
+  transports,
 });
 
 module.exports = logger;
