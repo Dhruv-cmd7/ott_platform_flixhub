@@ -87,7 +87,7 @@ const Login = () => {
         if (result.success) {
           setSuccess('Account created successfully! Logging you in...');
           setTimeout(() => {
-            navigate('/restricted', { replace: true });
+            navigate('/watch', { replace: true });
           }, 1500);
         } else {
           setError(result.message || 'Registration failed.');
